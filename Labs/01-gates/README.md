@@ -16,7 +16,7 @@
 
 
 ### code of VHDL:
-
+```vhdl
 architecture dataflow of gates is
 begin
     f_o    <= ((not b_i) and a_i) or ((not c_i) and (not b_i));
@@ -24,7 +24,7 @@ begin
     fNAND_o    <= (not(not(not(not b_i) and a_i) and (not(not c_i) and (not b_i))));
     
 end architecture dataflow;
-
+```
 ### simulation:
 
 ![De Morgan's](screens/screen1.png)
@@ -40,7 +40,7 @@ https://www.edaplayground.com/x/apsG
 ## 2. Boolean postulates
 
 ### code of VHDL:
-
+```vhdl
 architecture dataflow of gates is
 begin
     f1_o <= x_i and (not x_i);
@@ -49,7 +49,7 @@ begin
     f4_o <= x_i or x_i or x_i;
 
 end architecture dataflow;
-
+```
 ### simulation:
 
 ![Boolean postulates](screens/screen2.png)
@@ -65,7 +65,7 @@ https://www.edaplayground.com/x/8Mhg
 ## 3. Distributive laws
 
 ### code of VHDL:
-
+```vhdl
 architecture dataflow of gates is
 begin
     f1_o <= ((x_i and y_i) or (x_i and z_i));
@@ -74,7 +74,7 @@ begin
     f4_o <= (x_i or (y_i and z_i));
 
 end architecture dataflow;
-
+```
 ### simulation:
 
 ![Distributive laws](screens/screen3.png)
