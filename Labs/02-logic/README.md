@@ -1,4 +1,4 @@
-# Ukol1:
+# Priprava:
 
 | **Dec. equivalent** | **B[1:0]** | **A[1:0]** | **B is greater than A** | **B equals A** | **B is less than A** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -40,11 +40,11 @@ less_PoS_min=(a1 + a0)+(/b1 + /b0)+(/b1 + a1)+(/b0 + a1)+(/b1 + a0)
 
 
 
-4-bit binary comparator:
+# 4-bit binary comparator:
 
 
 ## design:
-````vhdl
+```vhdl
 entity comparator_4bit is
     port(
         a_i		      : in  std_logic_vector(4 - 1 downto 0);
@@ -69,10 +69,10 @@ begin
     B_less_A_o    <= '1' when (b_i < a_i) else '0';
 
 end architecture Behavioral;
-````
+```
 ## testbanch:
 
-````vhdl
+```vhdl
 ------------------------------------------------------------------------
 -- Entity declaration for testbench
 ------------------------------------------------------------------------
@@ -173,7 +173,7 @@ begin
     end process p_stimulus;
 
 end architecture testbench;
-````
+```
 
 ![vypis](testbanch.png)
 
