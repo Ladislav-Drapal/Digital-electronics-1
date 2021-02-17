@@ -1,4 +1,6 @@
-# Priprava:
+# lab: 02-logic
+
+## Priprava:
 
 | **Dec. equivalent** | **B[1:0]** | **A[1:0]** | **B is greater than A** | **B equals A** | **B is less than A** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -29,13 +31,13 @@ Less_pos=M0.M4.M5.M8.M9.M10.M12.M13.M14.M15=
 
 
 ## K-map:
-![min](K-map.png)
+![min](pictures/K-map.png)
 (/b1./b0./a1./a0)+(/b1.b0./a1.a0)+(b1./b0.a1./a0)+(b1.b0.a1.a0)
 
-![less_SoP_min](K-map_minterms.png)
+![less_SoP_min](pictures/K-map_minterms.png)
 greater_SoP_min=(b1./a1)+(b0./a1./a0)+(/a0.b1.b2)
 
-![less_PoS_min](K-map_maxterms.png)
+![less_PoS_min](pictures/K-map_maxterms.png)
 less_PoS_min=(a1 + a0)+(/b1 + /b0)+(/b1 + a1)+(/b0 + a1)+(/b1 + a0)
 
 
@@ -175,10 +177,12 @@ begin
 end architecture testbench;
 ```
 
-![vypis](testbanch.png)
+![vypis](pictures/testbanch.png)
 
-simulated:
-![prubeh](4_bits.png)
+simulation:
+![prubeh](pictures/4_bits.png)
+
+EDA Playground link:
 
 https://www.edaplayground.com/x/Wbpp
 
