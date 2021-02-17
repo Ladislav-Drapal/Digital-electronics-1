@@ -35,10 +35,12 @@ Less_pos=M0.M4.M5.M8.M9.M10.M12.M13.M14.M15=
 
 (/b1./b0./a1./a0)+(/b1.b0./a1.a0)+(b1./b0.a1./a0)+(b1.b0.a1.a0)
 
+## SoP
 ![less_SoP_min](pictures/K-map_minterms.png)
 
 greater_SoP_min=(b1./a1)+(b0./a1./a0)+(/a0.b1.b2)
 
+## PoS
 ![less_PoS_min](pictures/K-map_maxterms.png)
 
 less_PoS_min=(a1 + a0)+(/b1 + /b0)+(/b1 + a1)+(/b0 + a1)+(/b1 + a0)
