@@ -90,13 +90,15 @@ end architecture Behavioral;
         wait;
     end process p_stimulus;
 ```
+### VHDL simulation time waveforms
 
-
+![less_PoS_min](pictures/prubeh.png)
+![less_PoS_min](pictures/prubeh2.png)
 
 
 ## 3. Vivado tutorial
 
-### project creation
+### Project creation
 
 ![less_PoS_min](pictures/pict1aa.png)
 ![less_PoS_min](pictures/pict7.png)
@@ -111,20 +113,27 @@ end architecture Behavioral;
 ![less_PoS_min](pictures/pict16.png)
 ![less_PoS_min](pictures/pict1aa.png)
 
-### adding source file
+
+### Adding source file
+
 ![less_PoS_min](pictures/pict1aa.png)
 ![less_PoS_min](pictures/pict2.png)
 
-### adding testbench file
+
+### Adding testbench file
+
 ![less_PoS_min](pictures/pict1aa.png)
 ![less_PoS_min](pictures/pict2.png)
 ![less_PoS_min](pictures/pict3.png)
 
-### running simulation
+
+### Running simulation
+
 ![less_PoS_min](pictures/pict4.png)
 
 
-### adding XDC constraints file
+### Adding XDC constraints file
+
 ![less_PoS_min](pictures/pict5.png)
 ![less_PoS_min](pictures/pict6.png)
 
