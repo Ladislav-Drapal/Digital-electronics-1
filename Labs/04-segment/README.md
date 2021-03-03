@@ -3,6 +3,7 @@
 ### Figure or table with connection of 7-segment displays on Nexys A7 board
 								
 | **IO** | **Vývod** | **Vst.Báze** | **Tranzistor** | **Nap. do emitoru** | **Výst. Kolektor** | **Výst. 7-seg.** | **Rezistor** | **Vývod** |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |Artix-7|U13|Rezistor|AN7|3,3V|7-seg. Display|CA, CB|Rezistor|T10|
 |Artix-7|K2|Rezistor|AN6|3,3V|7-seg. Display|CC, CD|Rezistor|R10|
 |Artix-7|T14|Rezistor|AN5|3,3V|7-seg. Display|CE, CF|Rezistor|K16|
