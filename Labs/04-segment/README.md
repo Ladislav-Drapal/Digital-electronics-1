@@ -184,3 +184,5 @@ p_stimulus : process
 | F | 1111 | 1 | 0 | 1 | 1 |
 
 ### Screenshot with simulated time waveforms
+
+![min](pictures/segment2.png)
