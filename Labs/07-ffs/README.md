@@ -6,38 +6,38 @@
    
 qn+1 = d
 
-   | **D** | **Qn** | **Q(n+1)** | **Comments** |
-   | :-: | :-: | :-: | :-- |
-   | 0 | 0 | 0 | No change |
-   | 0 | 1 | 1 | No change |
-   | 1 | 0 | 0 | Set |
-   | 1 | 1 | 1 | Set |
+   | **clk** | **D** | **Qn** | **Q(n+1)** | **Comments** |
+   | :-: | :-: | :-: | :-: | :-- |
+   | ![rising](pictures/znak.png) | 0 | 0 | 0 | No change |
+   | ![rising](pictures/znak.png) | 0 | 1 | 1 | No change |
+   | ![rising](pictures/znak.png) | 1 | 0 | 0 | Set |
+   | ![rising](pictures/znak.png) | 1 | 1 | 1 | Set |
 
 ### JK flip-flop
 
 qn+1 = j/qn + /kqn
 
-   | **J** | **K** | **Qn** | **Q(n+1)** | **Comments** |
-   | :-: | :-: | :-: | :-: | :-- |
-   | 0 | 0 | 0 | 0 | No change |
-   | 0 | 0 | 1 | 1 | No change |
-   | 0 | 1 | 0 | 0 | Reset |
-   | 0 | 1 | 1 | 0 | Reset |
-   | 1 | 0 | 0 | 1 | Set |
-   | 1 | 0 | 1 | 1 | Set |
-   | 1 | 1 | 0 | 1 | Toggle |
-   | 1 | 1 | 1 | 0 | Toggle |
+   | **clk** | **J** | **K** | **Qn** | **Q(n+1)** | **Comments** |
+   | :-: | :-: | :-: | :-: | :-: | :-- |
+   | ![rising](pictures/znak.png) | 0 | 0 | 0 | 0 | No change |
+   | ![rising](pictures/znak.png) | 0 | 0 | 1 | 1 | No change |
+   | ![rising](pictures/znak.png) | 0 | 1 | 0 | 0 | Reset |
+   | ![rising](pictures/znak.png) | 0 | 1 | 1 | 0 | Reset |
+   | ![rising](pictures/znak.png) | 1 | 0 | 0 | 1 | Set |
+   | ![rising](pictures/znak.png) | 1 | 0 | 1 | 1 | Set |
+   | ![rising](pictures/znak.png) | 1 | 1 | 0 | 1 | Toggle |
+   | ![rising](pictures/znak.png) | 1 | 1 | 1 | 0 | Toggle |
 
 ### T flip-flop
 
 qn+1 = t/qn + /tqn
 
-   | **T** | **Qn** | **Q(n+1)** | **Comments** |
-   | :-: | :-: | :-: | :-- |
-   | 0 | 0 | 0 | No change |
-   | 0 | 1 | 1 | No change |
-   | 1 | 0 | 1 | Invert (Toggle) |
-   | 1 | 1 | 0 | Invert (Toggle) |
+   | **clk** | **T** | **Qn** | **Q(n+1)** | **Comments** |
+   | :-: | :-: | :-: | :-: | :-- |
+   | ![rising](pictures/znak.png) | 0 | 0 | 0 | No change |
+   | ![rising](pictures/znak.png) | 0 | 1 | 1 | No change |
+   | ![rising](pictures/znak.png) | 1 | 0 | 1 | Invert (Toggle) |
+   | ![rising](pictures/znak.png) | 1 | 1 | 0 | Invert (Toggle) |
 
 
 ## D latch
