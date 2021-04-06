@@ -169,16 +169,12 @@
 ## 3. Smart controller
 ### State table
 
-| **Current state** | **Direction South** | **Direction West** | **Delay** |
-| :-- | :-: | :-: | :-: |
-| `STOP1`      | red    | red | 1 sec |
-| `SENSOR1`    | red    | yellow | 1 sec |
-| `WEST_GO`    | red    | green | 4 sec |
-| `WEST_WAIT`  | red    | yellow | 2 sec |
-| `STOP2`      | red    | red | 1 sec |
-| `SENSOR2`    | yellow    | red | 1 sec |
-| `SOUTH_GO`   | green  | red | 4 sec |
-| `SOUTH_WAIT` | yellow | red | 2 sec |
+| **Name** | **Output** | **No cars (00)** | **Cars to west (01)** | **Cars to South (10)** | **Cars both directions (11)** |
+| :-- | :-: | :-: | :-: | :-: | :-: |
+| `SOUTH_GO`      | 100001 | SOUTH_GO | SOUTH_wait | SOUTH_GO | SOUTH_wait |
+| `SOUTH_wait`    | 100010 | WEST_GO | WEST_GO | WEST_GO | WEST_GO |
+| `WEST_GO`       | 001100 | WEST_GO | WEST_GO | WEST_WAIT | WEST_WAIT |
+| `WEST_WAIT`     | 010100 | SOUTH_GO | SOUTH_GO | SOUTH_GO | SOUTH_GO |
 
 
 ### State diagram
@@ -193,43 +189,34 @@
     begin
         if rising_edge(clk) then
             if (reset = '1') then       -- Synchronous reset
-                s_state <= STOP1 ;      -- Set initial state
-                s_cnt   <= c_ZERO;      -- Clear all bits
+                s_state   <= WEST_GO ;      -- Set initial state
+                s_cnt     <= c_ZERO;      -- Clear all bits
+                s_SENSOR1 <= c_ZERO;
+                s_SENSOR2 <= c_ZERO;
 
             elsif (s_en = '1') then
                 -- Every 250 ms, CASE checks the value of the s_state 
                 -- variable and changes to the next state according 
                 -- to the delay value.
                 case s_state is
-
-                    -- If the current state is STOP1, then wait 1 sec
-                    -- and move to the next GO_WAIT state.
-                    when STOP1 =>
-                        -- Count up to c_DELAY_1SEC
-                        if (s_cnt < c_DELAY_1SEC) then
-                            s_cnt <= s_cnt + 1;
-                        else
-                            -- Move to the next state
-                            s_state <= SENSOR1;
-                            -- Reset local counter value
-                            s_cnt   <= c_ZERO;
-                        end if;
-
-                    when SENSOR1 =>
-                        -- Count up to c_DELAY_1SEC
-                        if (s_cnt < c_DELAY_1SEC) then
-                            s_cnt <= s_cnt + 1;
-                        else
-                            -- Move to the next state
-                            s_state <= WEST_GO;
-                            -- Reset local counter value
-                            s_cnt   <= c_ZERO;
-                        end if;
                         
                     when WEST_GO =>
                     -- Count up to c_DELAY_4SEC
                         if (s_cnt < c_DELAY_4SEC) then
                             s_cnt <= s_cnt + 1;
+                            
+                        elsif (s_sensor1 = c_no_cars) then
+                            s_state <= WEST_GO;
+                            s_cnt   <= c_ZERO;
+                            
+                        elsif (s_sensor1 = c_cars_to_west) then
+                            s_state <= WEST_GO;
+                            s_cnt   <= c_ZERO;  
+                             
+                        elsif (s_sensor1 = c_cars_both) then
+                            s_state <= WEST_WAIT;
+                            s_cnt   <= c_ZERO;                                                      
+                                                        
                         else
                             -- Move to the next state
                             s_state <= WEST_WAIT;
@@ -238,30 +225,8 @@
                         end if;
 
                     when WEST_WAIT =>
-                    -- Count up to c_DELAY_1SEC
+                    -- Count up to c_DELAY_2SEC
                         if (s_cnt < c_DELAY_2SEC) then
-                            s_cnt <= s_cnt + 1;
-                        else
-                            -- Move to the next state
-                            s_state <= STOP2;
-                            -- Reset local counter value
-                            s_cnt   <= c_ZERO;
-                        end if;
-                        
-                    when STOP2 =>
-                    -- Count up to c_DELAY_1SEC
-                        if (s_cnt < c_DELAY_1SEC) then
-                            s_cnt <= s_cnt + 1;
-                        else
-                            -- Move to the next state
-                            s_state <= SENSOR2;
-                            -- Reset local counter value
-                            s_cnt   <= c_ZERO;
-                        end if;   
-                                             
-                    when SENSOR2 =>
-                        -- Count up to c_DELAY_1SEC
-                        if (s_cnt < c_DELAY_1SEC) then
                             s_cnt <= s_cnt + 1;
                         else
                             -- Move to the next state
@@ -274,6 +239,19 @@
                     -- Count up to c_DELAY_1SEC
                         if (s_cnt < c_DELAY_4SEC) then
                             s_cnt <= s_cnt + 1;
+                            
+                        elsif (s_sensor2 = c_no_cars) then
+                            s_state <= SOUTH_GO;
+                            s_cnt   <= c_ZERO;                            
+                            
+                        elsif (s_sensor2 = c_cars_to_south) then
+                            s_state <= SOUTH_GO;
+                            s_cnt   <= c_ZERO;                            
+                            
+                        elsif (s_sensor2 = c_cars_both) then
+                            s_state <= SOUTH_WAIT;
+                            s_cnt   <= c_ZERO;   
+                                                        
                         else
                             -- Move to the next state
                             s_state <= SOUTH_WAIT;
@@ -283,23 +261,22 @@
                         
                         
                     when SOUTH_WAIT =>
-                    -- Count up to c_DELAY_1SEC
+                    -- Count up to c_DELAY_2SEC
                         if (s_cnt < c_DELAY_2SEC) then
                             s_cnt <= s_cnt + 1;
                         else
                             -- Move to the next state
-                            s_state <= STOP1;
+                            s_state <= WEST_GO;
                             -- Reset local counter value
                             s_cnt   <= c_ZERO;
                         end if;                         
-                        -- WRITE YOUR CODE HERE
 
 
                     -- It is a good programming practice to use the 
                     -- OTHERS clause, even if all CASE choices have 
                     -- been made. 
                     when others =>
-                        s_state <= STOP1;
+                        s_state <= WEST_GO;
 
                 end case;
             end if; -- Synchronous reset
